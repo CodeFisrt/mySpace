@@ -1,0 +1,105 @@
+<div class="row">
+    <div class="col-7">
+        <div class="card">
+            <div class="card-header bg-success">
+
+                Package Portal
+            </div>
+            <div class="card-body">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Sr No</th>
+                            <th>Package Name</th>
+                            <th>Cost</th>
+                            <th>Description</th>
+                            <th>Status</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody *ngIf="isLoader == false">
+                        <tr *ngFor="let package of packagesArray; let sr= index">
+                            <td> {{sr +1}}</td>
+                            <td>{{package.packageName}}</td>
+                            <td>{{package.packageCost}}</td>
+                            <td>{{package.packageDescription}}</td>
+                            <td>{{package.isPackageActive}}</td>
+                            <td class="text-center">
+                                <button class="btn btn-success btn-sm"
+                                    (click)="editRecord(package.packageId)">Edit</button>
+                                <button class="btn btn-danger btn-sm mx-2" (click)="onDelete(package.packageId)">
+                                    <div class="spinner-border spinner-border-sm" *ngIf="isLoader"></div>
+                                    Delete
+                                </button>
+                            </td>
+                        </tr>
+                    </tbody>
+                    <tbody *ngIf="isLoader == true">
+                        <tr>
+                            <td colspan="6" class="text-center">
+                                <div class="spinner-grow text-muted"></div>
+                                <div class="spinner-grow text-primary"></div>
+                                <div class="spinner-grow text-success"></div>
+                                <div class="spinner-grow text-info"></div>
+                                <div class="spinner-grow text-warning"></div>
+                                <div class="spinner-grow text-danger"></div>
+                                <div class="spinner-grow text-secondary"></div>
+                                <div class="spinner-grow text-dark"></div>
+                                <div class="spinner-grow text-light"></div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="col-5">
+        <div class="card">
+            <div class="card-header bg-success">
+                Create Package
+            </div>
+            <div class="card-body">
+                <form>
+                    <div class="row">
+                        <div class="col-6">
+                            <label for="">Package Name</label>
+                            <input type="text" class="form-control" name="packageName"
+                                [(ngModel)]="packageObj.packageName" placeholder="Enter">
+                        </div>
+                        <div class="col-6">
+                            <label for="">Cost</label>
+                            <input type="text" class="form-control" name="packageCost"
+                                [(ngModel)]="packageObj.packageCost" placeholder="Enter">
+                        </div>
+                        <div class="col-12">
+                            <label for="">Description</label>
+                            <textarea name="" class="form-control" name="packageDescription"
+                                [(ngModel)]="packageObj.packageDescription" rows="3"></textarea>
+                        </div>
+                        <div class="col-6">
+                            <label for="">Is Active</label>
+                            <input type="checkbox" name="isPackageActive" [(ngModel)]="packageObj.isPackageActive">
+                        </div>
+                    </div>
+                    <div class="row text-center">
+                        <div class="col-6 ">
+                            <button class="btn btn-sm btn-secondary">Reset</button>
+                        </div>
+                        <div class="col-6">
+                            <button class="btn btn-sm btn-primary" *ngIf="packageObj.packageId ==0"
+                                (click)="createPackage()">
+                                <div class="spinner-border spinner-border-sm" *ngIf="isLoader"></div>
+                                Save
+                            </button>
+                            <button class="btn btn-sm btn-success" *ngIf="packageObj.packageId !==0"
+                                (click)="updatePackage()">
+                                <div class="spinner-border spinner-border-sm" *ngIf="isLoader"></div>
+                                Update
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div> 
+    </div>
+</div>
