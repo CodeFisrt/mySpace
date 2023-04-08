@@ -1,0 +1,104 @@
+<div class="row">
+    <div class="col-7">
+        <div class="card">
+            <div class="card-header bg-success"> 
+                Rooms Portal
+            </div>
+            <div class="card-body">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Sr No</th>
+                            <th>Room Name  </th>
+                            <th>Room Location</th>
+                            <th>Seating Capacity</th>
+                            <th>Status</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody *ngIf="isLoader == false">
+                        <tr *ngFor="let package of roomsArray; let sr= index">
+                            <td> {{sr +1}}</td>
+                            <td>{{package.roomName}}</td>
+                            <td>{{package.roomLocation}}</td>
+                            <td>{{package.roomSeatingCapacity}}</td>
+                            <td>{{package.isRoomActive}}</td>
+                            <td class="text-center">
+                                <!-- <button class="btn btn-success btn-sm"
+                                    (click)="editRecord(package.packageId)">Edit</button>
+                                <button class="btn btn-danger btn-sm mx-2" (click)="onDelete(package.packageId)">
+                                    <div class="spinner-border spinner-border-sm" *ngIf="isLoader"></div>
+                                    Delete
+                                </button> -->
+                            </td>
+                        </tr>
+                    </tbody>
+                    <tbody *ngIf="isLoader == true">
+                        <tr>
+                            <td colspan="6" class="text-center">
+                                <div class="spinner-grow text-muted"></div>
+                                <div class="spinner-grow text-primary"></div>
+                                <div class="spinner-grow text-success"></div>
+                                <div class="spinner-grow text-info"></div>
+                                <div class="spinner-grow text-warning"></div>
+                                <div class="spinner-grow text-danger"></div>
+                                <div class="spinner-grow text-secondary"></div>
+                                <div class="spinner-grow text-dark"></div>
+                                <div class="spinner-grow text-light"></div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="col-5">
+        <div class="card">
+            <div class="card-header bg-success">
+                Create Package
+            </div>
+            <div class="card-body">
+                <form>
+                    <div class="row">
+                        <div class="col-6">
+                            <label for=""> Room Name</label>
+                            <input type="text" class="form-control" name="RoomName"
+                                [(ngModel)]="roomObj.RoomName" placeholder="Enter">
+                        </div>
+                        <div class="col-6">
+                            <label for="">  Location</label>
+                            <input type="text" class="form-control" name="RoomLocation"
+                                [(ngModel)]="roomObj.RoomLocation" placeholder="Enter">
+                        </div>
+                        <div class="col-12">
+                            <label for="">  Seating Capacity</label>
+                            <input type="text" class="form-control" name="RoomSeatingCapacity"
+                                [(ngModel)]="roomObj.RoomSeatingCapacity" placeholder="Enter"> 
+                        </div>
+                        <div class="col-6">
+                            <label for="">Is Active</label>
+                            <input type="checkbox" name="isPackageActive" [(ngModel)]="roomObj.IsRoomActive">
+                        </div>
+                    </div>
+                    <div class="row text-center">
+                        <div class="col-6 ">
+                            <button class="btn btn-sm btn-secondary">Reset</button>
+                        </div>
+                        <div class="col-6">
+                            <button class="btn btn-sm btn-primary" *ngIf="roomObj.RoomId ==0"
+                                (click)="createNewRoom()">
+                                <div class="spinner-border spinner-border-sm" *ngIf="isLoader"></div>
+                                Save
+                            </button>
+                            <button class="btn btn-sm btn-success" *ngIf="roomObj.RoomId !==0"
+                                (click)="updateRoom()">
+                                <div class="spinner-border spinner-border-sm" *ngIf="isLoader"></div>
+                                Update
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div> 
+    </div>
+</div>
