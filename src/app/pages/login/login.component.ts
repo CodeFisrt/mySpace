@@ -24,7 +24,7 @@ export class LoginComponent {
       if(res.result) {
         localStorage.setItem('loogedUserData', JSON.stringify(res.data));
         localStorage.setItem("loggedinUserName",res.data.userName );
-        if(res.data.role == "SuperAdmin") {
+        if(res.data.role == "Admin") {
           this.router.navigateByUrl("admin-dashboard");
         } 
         else if (res.data.role == "ClientAdmin") {

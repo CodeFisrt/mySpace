@@ -12,6 +12,7 @@ import { ClientUserDashboardComponent } from './pages/client-user-dashboard/clie
 import { ClientLayoutComponent } from './pages/client-layout/client-layout.component';
 import { AdminDashboardComponent } from './pages/admin-dashboard/admin-dashboard.component';
 import { RoomsComponent } from './pages/rooms/rooms.component';
+import { BookingComponent } from './pages/booking/booking.component';
 
 const routes: Routes = [
   {
@@ -55,6 +56,14 @@ const routes: Routes = [
       {
         path:'Rooms',
         component:RoomsComponent
+      },
+      {
+        path: "Client-users",
+        component: UsersComponent
+      },
+      {
+        path:'booking',
+        component:BookingComponent
       }
     ]
   }, 
@@ -65,6 +74,10 @@ const routes: Routes = [
       {
         path:'user-dashboard',
         component:ClientUserDashboardComponent
+      },
+      {
+        path:'user-booking',
+        component:BookingComponent
       }
     ]
   }
